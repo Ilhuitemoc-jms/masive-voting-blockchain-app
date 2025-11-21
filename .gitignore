@@ -1,0 +1,293 @@
+# -----------------------------------------------------------------------------
+# .gitignore para Proyecto de Votación Blockchain
+# Stack: Vue.js + Django + Hardhat + Docker + Kafka + MongoDB
+# -----------------------------------------------------------------------------
+
+# ============================= ARCHIVOS SENSIBLES ===========================
+# 
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.key
+*.pem
+secrets.json
+.secret
+private-keys.txt
+mnemonic.txt
+
+# -----------------------------------------------------------------------------
+# FRONTEND: Vue.js + Vite
+
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+dist-ssr/
+
+# Cache de Vite
+.vite/
+.vite-cache/
+
+# Logs
+logs/
+*.log
+
+# Editor directories
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+*.lcov
+.nyc_output
+
+# -----------------------------------------------------------------------------
+# BACKEND: Python + Django
+
+# Python compiled files
+*.py[cod]
+*$py.class
+__pycache__/
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+env.bak/
+venv.bak/
+virtualenv/
+
+# Django specific
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+
+# IMPORTANTE: NO ignorar migrations (Django recomienda versionarlas)
+# !*/migrations/__init__.py
+
+# Flask instance folder
+instance/
+
+# Python distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ============================================================================
+# BLOCKCHAIN: Hardhat + Solidity + Ethereum
+# ============================================================================
+
+# Hardhat compiled contracts
+cache/
+artifacts/
+artifacts-zk/
+cache-zk/
+
+# TypeChain generated types
+typechain/
+typechain-types/
+
+# Coverage reports (solidity-coverage)
+coverage/
+coverage.json
+
+# Hardhat deployment records (opcional: comentar si quieres versionarlos)
+deployments/*/solcInputs
+deployments/*/.chainId
+
+# Gas reports
+gasReporterOutput.json
+
+# Compiled ABIs (ya están en artifacts)
+*.abi
+
+# Deployed contract addresses (crear archivo separado si necesitas)
+# deployed-addresses.json
+
+# -----------------------------------------------------------------------------
+# DOCKER
+
+# Volúmenes persistentes de Docker
+mongodb_data/
+postgres_data/
+
+# Docker compose override files
+docker-compose.override.yml
+
+# -----------------------------------------------------------------------------
+# KAFKA
+
+# Kafka logs y data (si corres local sin Docker)
+kafka-logs/
+zookeeper-data/
+
+# -----------------------------------------------------------------------------
+# MONGODB
+
+# Datos de MongoDB local
+data/db/
+mongodb/
+
+# -----------------------------------------------------------------------------
+# SISTEMA OPERATIVO
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# -----------------------------------------------------------------------------
+# IDEs Y EDITORES
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# JetBrains IDEs (PyCharm, WebStorm, IntelliJ)
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+GitHub.sublime-settings
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# -----------------------------------------------------------------------------
+# OTROS
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Test data (descomentar si generas datos de prueba grandes)
+# test-data/
+# *.csv
+
+# Lock files (opcional: algunos equipos prefieren versionarlos)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
