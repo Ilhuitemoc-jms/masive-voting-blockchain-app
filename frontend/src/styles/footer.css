@@ -6,7 +6,7 @@
  */
 
 #pie-banners {
-    background-image: url("/assets/meta/1848c4ce/layout/bg-pie.jpg");
+    background-image: url("/assets/Images/backgrounds/bg-pie.jpg");
     height: 50px;
     width: 970px;
     padding-top: 3px;
@@ -48,7 +48,7 @@
     margin-left: 2px;
     margin-top: 3px;
     float: left;
-    background-image: url("/assets/meta/299c44ea/layout/pie-bg.jpg");
+    background-image: url("/assets/Images/backgrounds/pie-bg.jpg");
     background-repeat: no-repeat;
     height: 82px;
     text-align: center;

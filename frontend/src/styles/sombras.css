@@ -22,7 +22,7 @@
 }
 
 .sombra-izquierda {
-    background: url("/assets/meta/c50a144c/layout/sombra-i.png") repeat-y scroll 0 0 transparent;
+    background: url("/assets/Images/backgrounds/sombra-i.png") repeat-y scroll 0 0 transparent;
     height: 100%;
     left: -13px;
     position: absolute;
@@ -31,7 +31,7 @@
 }
 
 .sombra-derecha {
-    background: url("/assets/meta/d16c13d0/layout/sombra-d.png") repeat-y scroll 0 0 transparent;
+    background: url("/assets/Images/backgrounds/sombra-d.png") repeat-y scroll 0 0 transparent;
     height: 100%;
     right: -13px;
     position: absolute;

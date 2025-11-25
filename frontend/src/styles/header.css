@@ -9,7 +9,7 @@
 }
 
 #navegacion {
-    background: #E1B715 url("/assets/meta/3cba6bf3/layout/barra-amarilla.png") repeat-x 0px 50%;
+    background: #E1B715 url("/assets/Images/backgrounds/barra-amarilla.png") repeat-x 0px 50%;
     border-bottom: 1px solid #8C700B;
     width: 980px;
     height: 20px;
@@ -35,7 +35,7 @@
 }
 
 #navegacion a:hover {
-    background: white url("/assets/meta/dc2171a7/layout/barra-amarilla-hover.png") repeat-x 0px 50%;
+    background: white url("/assets/Images/backgrounds/barra-amarilla.png") repeat-x 0px 50%;
     text-shadow: #AAA 1px 1px 1px;
 }
 

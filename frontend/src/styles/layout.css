@@ -28,7 +28,7 @@ body {
 /* Para noticias.  */
 
 .topizq {
-    background:#657A9D url("/assets/meta/6eda8d1e/layout/instancia-back.png") repeat-x;
+    background:#657A9D url("/assets/Images/backgrounds/instancia-back.png") repeat-x;
     border-top:2px solid #252B30;
     border-bottom:2px solid #cfcfcf;
     color: #fff;
@@ -61,7 +61,7 @@ body {
     font:215% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
     font-weight:normal;
     color:#fff;
-    background: #333C4D url("/assets/meta/6eda8d1e/layout/instancia-back.png") repeat-x;
+    background: #333C4D url("/assets/Images/backgrounds/instancia-back.png") repeat-x;
     margin:0;
     padding:.3em .8em .4em .8em;
     border-bottom:2px solid #cfcfcf;
@@ -215,7 +215,7 @@ body {
     height: 100%;
     top: 0;
     right: 15px;
-    background: transparent url("/assets/meta/8fa83add/layout/ciencias.png") no-repeat 0 50%;
+    background: transparent url("/assets/Images/logos/ciencias.png") no-repeat 0 50%;
 }
 
 .academicoLista {

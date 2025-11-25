@@ -1,0 +1,128 @@
+@charset "UTF-8";
+/* CSS Document - Estilos específicos para la página de login */
+
+/* Importar todos los estilos necesarios */
+@import './layout.css';
+@import './header.css';
+@import './footer.css';
+@import './sombras.css';
+@import './content.css';
+@import './default.css';
+
+/* Estilos adicionales para alertas */
+.alert-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+/* Estilos para el botón */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Estilos para inputs */
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+/* Estilos para el formulario */
+fieldset {
+  padding: 10px;
+  margin: 0 2px;
+  border: 1px solid #c0c0c0;
+}
+
+legend {
+  padding: 0 5px;
+  border: none;
+  width: auto;
+}
+
+.t-beaneditor-row {
+  padding: 4px 0px 2px 0px;
+  display: -webkit-box;
+  margin-bottom: 10px;
+}
+
+.t-beaneditor-row label {
+  width: 250px;
+  display: block;
+  text-align: right;
+  clear: left;
+  padding-right: 3px;
+  margin-right: 10px;
+}
+
+.t-beaneditor-row label:after {
+  content: ":";
+}
+
+.input-wrapper {
+  flex: 1;
+}
+
+.button-row {
+  margin-top: 15px;
+  padding-left: 260px;
+}
+
+.forgot-link {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
