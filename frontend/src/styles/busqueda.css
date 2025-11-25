@@ -1,0 +1,18 @@
+.busqueda input {
+    font: normal normal normal 11px/normal Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+    margin-left: 6px;
+}
+
+.caja-busqueda {
+    width: 15em;
+    height: 18px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ecd15f;
+}
+
+.busqueda {
+    position: absolute;
+    top: 0;
+    right: 1em;
+}

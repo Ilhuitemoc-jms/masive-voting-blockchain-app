@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* CSS Document */
+/* Encabezado */
+
+#encabezado{
+    height: 103px;
+    width: 980px;
+    float: left;
+}
+
+#navegacion {
+    background: #E1B715 url("/assets/meta/3cba6bf3/layout/barra-amarilla.png") repeat-x 0px 50%;
+    border-bottom: 1px solid #8C700B;
+    width: 980px;
+    height: 20px;
+    float: left;
+    font: normal normal normal 11px/normal Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+#navegacion a {
+    border: none;
+    padding: 0.6em 0.4em 0.8em;
+    text-decoration: none;
+    text-shadow: #B39217 1px 1px 1px;
+}
+
+#navegacion a:visited {
+    color: black;
+}
+
+#navegacion a:link {
+    color: black;
+}
+
+#navegacion a:hover {
+    background: white url("/assets/meta/dc2171a7/layout/barra-amarilla-hover.png") repeat-x 0px 50%;
+    text-shadow: #AAA 1px 1px 1px;
+}
+
+#navegacion p {
+    margin: 0px;
+    padding: 0.25em 0px;
+}

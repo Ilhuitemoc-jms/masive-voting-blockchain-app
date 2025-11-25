@@ -1,0 +1,116 @@
+select {
+    width: 205px;
+}
+
+dl.x-beandisplay {
+    display: block;
+    padding: 2px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    width: auto;
+}
+
+dl.x-beandisplay dt {
+    width: 250px;
+    display: inline;
+    float: left;
+    text-align: right;
+    clear: left;
+    padding-right: 3px;
+    vertical-align: middle;
+}
+
+dl.x-beandisplay dt:after {
+    content: ":";
+}
+
+dl.x-beandisplay dd {
+    width: 400px;
+    float: left;
+    margin-left: inherit;
+}
+
+dl.x-beandisplay:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div.x-beandisplay div.x-beandisplay-label {
+    padding-right: 5px;
+}
+
+.x-error {
+    color: red;
+}
+
+.nombre {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #0a4e9b;
+    text-shadow: #B39217 1px 1px 1px;
+/* font-weight: bold; */
+}
+
+.x-disabled {
+    color: Gray;
+}
+
+.image-text {
+    padding: 0px 0.5em;
+    vertical-align: middle;
+}
+
+.foto {
+    background-color:#fff;
+    border-color:#aaa;
+    border-style: ridge groove groove ridge;
+    border-width: 2px;
+    padding: 5px;
+    -moz-box-shadow:0 0 4px rgba(0,0,0,.3);
+    -webkit-box-shadow:0 0 4px rgba(0,0,0,.3);
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+
+.centro {
+    display:block;
+    margin:1em auto;
+    text-align: center;
+}
+
+.izquierda {
+    display:block;
+    margin: .5em 1.4em 1.3em 0;
+    clear: left;
+    float: left;
+}
+
+.derecha {
+    display:block;
+    margin: .5em 0 1.3em 1.4em;
+    clear: right;
+    float: right;
+
+}
+
+.caption {
+    font-style: italic;
+    text-align: center;
+}
+
+#login-info {
+    position: relative;
+    float: right;
+}
+
+.floatingActionLink {
+    float: right;
+    padding-right: 5px;
+}
+
+.lista-checkbox {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

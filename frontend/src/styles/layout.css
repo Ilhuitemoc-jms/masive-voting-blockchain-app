@@ -1,0 +1,244 @@
+@charset "UTF-8";
+
+/* CSS Document */
+body {
+    margin-top: 0px;
+    background-color: #FFFFFF;
+    font: normal normal normal 14px/normal Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+}
+
+.navbar {
+    font-size: 90%;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navbar-in{
+/*    font-weight:bold; */
+}
+
+#contenedor {
+    margin: 0 auto;
+    width: 980px;
+}
+
+/* Para noticias.  */
+
+.topizq {
+    background:#657A9D url("/assets/meta/6eda8d1e/layout/instancia-back.png") repeat-x;
+    border-top:2px solid #252B30;
+    border-bottom:2px solid #cfcfcf;
+    color: #fff;
+    height: 100px;
+    width: 490px;
+    float: left;
+    margin:0;
+    border-bottom:2px solid #cfcfcf;
+    text-shadow:0 0 10px #808FA1;
+    position: relative;
+}
+
+#titulo-noticias {
+    font-size: 300%;
+    margin-top: 0.6em;
+    margin-left: 0.5em;
+}
+
+/*
+  Inicia Contenido
+  */
+
+#contenido {
+    width: 980px;
+    background-color: #FFFFFF;
+    float: left;
+}
+
+#topinterna {
+    font:215% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    font-weight:normal;
+    color:#fff;
+    background: #333C4D url("/assets/meta/6eda8d1e/layout/instancia-back.png") repeat-x;
+    margin:0;
+    padding:.3em .8em .4em .8em;
+    border-bottom:2px solid #cfcfcf;
+    text-shadow:0 0 10px #808FA1;
+    position: relative;
+}
+
+#info-contenido {
+    width: 750px;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+#info-contenido h1 {
+    font: 190% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    border-bottom: 1px solid #DDD;
+    font-weight: normal;
+    text-align: left;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido h2 {
+    font: 140% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    font-weight: normal;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido h3 {
+    font: 120% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido a,visited {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #003366;
+    text-decoration: none;
+}
+
+#info-contenido a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #003366;
+    text-decoration: underline;
+}
+
+/*
+*/
+
+#info-contenido2 {
+    width: 960px;
+    float: left;
+    padding-left: 5px;
+    padding-right: 10px;
+    position: relative;
+}
+
+#info-contenido2 h1 {
+    font: 190% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    border-bottom: 1px solid #DDD;
+    font-weight: normal;
+    text-align: left;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido2 h2 {
+    font: 140% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    font-weight: normal;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido2 h3 {
+    font: 110% Arial,A030,"Nimbus Sans L",FreeSans,"Liberation Sans",sans-serif;
+    padding: .7em 0;
+    margin: 0;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+    line-height: 115%;
+    text-shadow: 2px 2px 2px #CFCFCF;
+}
+
+#info-contenido2 a,visited {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #003366;
+    text-decoration: none;
+}
+
+#info-contenido2 a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #003366;
+    text-decoration: underline;
+}
+
+
+
+.info-estudiantes {
+    float: right;
+    width: 770px;
+    position: relative;
+    border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    padding-bottom: 10px;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+/*
+  estilos para internas sin menú de izquierda
+  */
+
+.info-estudiantes2 {
+    float: left;
+    width: 968px;
+    position: relative;
+    margin-right: 1px;
+    padding-left: 10px;
+    border: 1px solid #CCCCCC;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    padding-bottom: 10px;
+}
+
+#logo {
+    position: absolute;
+    width: 160px;
+    height: 100%;
+    top: 0;
+    right: 15px;
+    background: transparent url("/assets/meta/8fa83add/layout/ciencias.png") no-repeat 0 50%;
+}
+
+.academicoLista {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Evita que el date picker se esconda detrás de nuestra barra azul */
+
+.datePicker {
+    border: 1px solid WindowText;
+    background: Window;
+    width: 170px;
+    padding: 0px;
+    cursor: default;
+    -moz-user-focus: normal;
+    z-index: 1;
+}
+
+div.t-alert-controls {
+    display: none;
+}
+
+/*
+  Termina estilos para internas sin menú izquierda
+*/
