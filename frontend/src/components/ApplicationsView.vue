@@ -121,10 +121,10 @@
                 </li>
               </ul>
               
-              <h3>Votaciones</h3>
+              <h3>Votación Encriptada</h3>
               <ul>
                 <li>
-                  <a href="/voting">Formulario</a>
+                  <a href="/voting">Papeleta Digital</a>
                   <p>Ingresa para participar en la votación activa</p>
                 </li>
               </ul>

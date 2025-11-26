@@ -110,6 +110,10 @@ body {
     text-shadow: 2px 2px 2px #CFCFCF;
 }
 
+#info-contenido p {
+    margin-top: 20px;  /* Espacio arriba del párrafo */
+}
+
 #info-contenido a,visited {
     font-family: Arial, Helvetica, sans-serif;
     color: #003366;
