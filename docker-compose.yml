@@ -1,1 +1,89 @@
-  
+  # docker-compose.yml
+
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb_votacion
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - votacion_network
+
+  # Blockchain local - Ganache
+  ganache:
+    image: trufflesuite/ganache:latest
+    container_name: ganache_blockchain
+    ports:
+      - "8545:8545"
+    command: ganache-cli --host 0.0.0.0 --deterministic
+    networks:
+      - votacion_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8545"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Message Broker
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+    networks:
+      - votacion_network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka_broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    networks:
+      - votacion_network
+
+  # Backend - Procesa Kafka → MongoDB → Ganache
+  backend:
+    build: ./backend
+    container_name: backend_votacion
+    ports:
+      - "5000:5000"
+    depends_on:
+      ganache:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      kafka:
+        condition: service_started
+    environment:
+      GANACHE_URL: http://ganache:8545
+      KAFKA_BROKER: kafka:29092
+      MONGODB_URI: mongodb://admin:password123@mongodb:27017/votacion?authSource=admin
+      FLASK_ENV: development
+    networks:
+      - votacion_network
+    volumes:
+      - ./backend:/app
+
+networks:
+  votacion_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
