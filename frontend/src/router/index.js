@@ -15,13 +15,13 @@ const routes = [
     path: '/applications',
     name: 'Applications',
     component: ApplicationsView,
-    meta: { requiresAuth: true }
+    //meta: { requiresAuth: true }
   },
   {
     path: '/voting',
     name: 'Voting',
     component: VotingForm,
-    meta: { requiresAuth: true }
+    //meta: { requiresAuth: true }
   }
 ]
 

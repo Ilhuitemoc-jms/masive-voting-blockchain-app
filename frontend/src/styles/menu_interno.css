@@ -1,0 +1,153 @@
+@charset "UTF-8";
+/* CSS Document - Estilos para el menú interno y página de aplicaciones */
+
+/* Menú lateral izquierdo */
+#menu-interna {
+  float: left;
+  width: 200px;
+  margin-right: 10px;
+  padding-right: 10px;
+  padding-top: 21px;  /* Agregar esta línea */
+  border-right: 1px solid #CCCCCC;  /* ← AGREGA ESTA LÍNEA */
+}
+
+#navmenu-v {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navmenu-v li {
+  margin: 0 0 19px 0;  /* Agregar 15px de margen abajo */
+  padding: 0;
+  position: relative;
+}
+
+#navmenu-v li h2 {
+  margin: 0;
+  padding: 1px 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #113e79;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+#navmenu-v li h2 a {
+  color: #003366;
+  text-decoration: none;
+  display: block;
+}
+
+#navmenu-v li h2 a:hover {
+  color: #003366;
+  text-decoration: underline;
+}
+
+/* Línea amarilla debajo de cada opción del menú */
+#navmenu-v li::after {
+  content: "";
+  display: block;
+  height: 0.4px;
+  background: #E1B715 url("/assets/Images/backgrounds/barra-amarilla.png") repeat-x 0px 50%;
+  margin: 4px 0;
+  padding: 0;
+  width: 100%;
+  color: #113e79;
+}
+
+/* Importar estilos del launcher */
+@import './launcher.css';
+
+/* Contenedor de aplicaciones - dos columnas */
+#apps-container {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.apps {
+  flex: 1;
+  min-width: 0;
+}
+
+.apps-alt {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Estilos para las listas de aplicaciones */
+.apps ul,
+.apps-alt ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0 0 10px 0;
+}
+
+.apps li,
+.apps-alt li {
+  margin: 0 0 8px 0;
+  padding: 0;
+  position: relative;
+  list-style-type: disc;
+}
+
+.apps li a,
+.apps-alt li a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: normal;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: auto !important;
+}
+
+.apps li a:hover,
+.apps-alt li a:hover {
+  text-decoration: underline;
+}
+
+.apps li p,
+.apps-alt li p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #333333;
+  font-style: normal;
+  line-height: 1.4;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Ajustar info-estudiantes para que funcione con el sidebar */
+.info-estudiantes {
+  display: flex !important;
+  width: 100% !important;
+  gap: 0;
+  float: none !important;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  padding-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: top;
+  position: relative;
+  border: none !important;  /* ← AGREGA ESTA LÍNEA */
+}
+
+.info-estudiantes #info-contenido {
+  flex: 1;
+  width: 750px;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  min-width: 0;
+}
+

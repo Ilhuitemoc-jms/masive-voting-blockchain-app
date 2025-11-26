@@ -8,6 +8,7 @@
 @import './sombras.css';
 @import './content.css';
 @import './default.css';
+@import './menu_interno.css';
 
 /* Estilos adicionales para alertas */
 .alert-error {
@@ -58,6 +59,7 @@
 .form-control {
   display: block;
   width: 100%;
+  min-width: 200px;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -69,6 +71,8 @@
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  box-sizing: border-box;
+  flex: 1;
 }
 
 .form-control:focus {
@@ -79,30 +83,45 @@
 
 /* Estilos para el formulario */
 fieldset {
-  padding: 10px;
-  margin: 0 2px;
-  border: 1px solid #c0c0c0;
+  padding: 15px;
+  margin: 0;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 4px;
 }
 
 legend {
-  padding: 0 5px;
+  padding: 8px 15px;
   border: none;
   width: auto;
+  background-color: #333C4D;
+  color: #fff;
+  font-weight: normal;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+legend .nombre {
+  color: #fff !important;
+  text-shadow: none;
 }
 
 .t-beaneditor-row {
   padding: 4px 0px 2px 0px;
-  display: -webkit-box;
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  gap: 10px;
 }
 
 .t-beaneditor-row label {
   width: 250px;
+  min-width: 250px;
+  flex-shrink: 0;
   display: block;
   text-align: right;
-  clear: left;
   padding-right: 3px;
-  margin-right: 10px;
+  margin-right: 0;
 }
 
 .t-beaneditor-row label:after {
@@ -111,6 +130,8 @@ legend {
 
 .input-wrapper {
   flex: 1;
+  min-width: 0;
+  display: flex;
 }
 
 .button-row {
@@ -126,3 +147,21 @@ legend {
 .forgot-link:hover {
   text-decoration: underline;
 }
+
+/* Estilos para proteger los iconos de ser comprimidos */
+#navegacion img.image-text,
+#pie-banners img.image-text {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  object-fit: contain;
+  flex-shrink: 0;
+  box-sizing: content-box;
+}
+
+/* Los estilos del menú interno y aplicaciones están en menu_interno.css */

@@ -1,0 +1,100 @@
+<div id="contenedor">
+  <!-- Header Section con sombras -->
+  <div id="contenedor-sombras-encabezado">
+    <!-- Encabezado principal -->
+    <div id="encabezado">
+      <a href="http://www.unam.mx/" target="_blank">
+        <img src="/assets/Images/logos/encabezado-unam.gif" alt="UNAM Logo" title="Universidad Nacional Autónoma de México, UNAM">
+      </a>
+      <img src="/assets/Images/backgrounds/fc08.jpg" alt="Encabezado Facultad de Ciencias" width="560" height="103" id="imagerotator">
+    </div>
+
+    <!-- Barra de navegación -->
+    <div id="navegacion">
+      <p>
+        <a href="http://www.fciencias.unam.mx/contacto" title="Contáctanos">
+          <img src="/assets/Images/icons/email.png" height="16" width="16" alt="" class="image-text">
+          Contáctanos
+        </a>
+        |
+        <a href="http://www.fciencias.unam.mx/meta/SiteMap" title="Mapa del sitio">
+          <img src="/assets/Images/icons/sitemap_color.png" height="16" width="16" alt="" class="image-text">
+          Mapa del sitio
+        </a>
+        |
+        <a href="http://www.fciencias.unam.mx/directorio/busqueda" title="Directorio">
+          <img src="/assets/Images/icons/group.png" height="16" width="16" alt="" class="image-text">
+          Directorio
+        </a>
+        |
+        <a href="http://mail.ciencias.unam.mx" target="_blank" title="Correo Ciencias">
+          <img src="/assets/Images/icons/arroba.png" height="16" width="16" alt="" class="image-text">
+          Correo
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="contenido">
+    <!-- Top interna con título -->
+    <div id="topinterna">
+      <slot name="section-title">Título de la Sección</slot>
+      <span id="logo"></span>
+    </div>
+
+    <!-- Área de información/formulario -->
+    <div class="info-estudiantes2">
+      <div id="info-contenido2">
+        <!-- Slot para el contenido específico de cada página -->
+        <slot name="content">
+          <!-- Contenido por defecto si no se proporciona -->
+        </slot>
+      </div>
+      <p>&nbsp;</p>
+    </div>
+  </div>
+
+  <!-- Footer con sombras -->
+  <div id="contenedor-sombras-pie">
+    <!-- Banner de redes sociales -->
+    <div id="pie-banners">
+      <span class="sombra-izquierda"></span>
+      <span class="sombra-derecha"></span>
+      <div id="ciencias-en">
+        Ciencias en:
+        <a title="Facebook" href="https://www.facebook.com/pages/Facultad-de-Ciencias/214278861928417" target="_blank">
+          <img src="/assets/Images/icons/facebook.png" width="16" height="16" class="image-text" alt="Facebook">
+          Facebook
+        </a>
+        <a title="Twitter" href="http://twitter.com/#!/fciencias" target="_blank">
+          <img src="/assets/Images/icons/twitter.png" width="16" height="16" class="image-text" alt="Twitter">
+          Twitter
+        </a>
+        <a title="Youtube" href="http://www.youtube.com/user/unamciencias" target="_blank">
+          <img src="/assets/Images/icons/youtube_top.png" width="16" height="16" class="image-text" alt="Youtube">
+          Youtube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de derechos -->
+  <div id="pie-derechos">
+    <p>
+      Hecho en México, todos los derechos reservados 2011-2016. 
+      Esta página puede ser reproducida con fines no lucrativos, siempre y cuando no se mutile, 
+      se cite la fuente completa y su dirección electrónica. De otra forma requiere permiso previo 
+      por escrito de la Institución.
+    </p>
+    <div id="administrado">
+      <p>
+        Sitio web administrado por la Coordinación de los Servicios de Cómputo de la Facultad de Ciencias. 
+        ¿Dudas?, ¿comentarios?.
+        <a href="mailto:webmaster@ciencias.unam.mx">Escribenos</a>.
+        <a href="http://www.fciencias.unam.mx/Privacidad.pdf">Aviso de privacidad</a>.
+      </p>
+    </div>
+  </div>
+</div>
+

@@ -43,3 +43,15 @@
     margin: 0px;
     padding: 0.25em 0px;
 }
+
+/* Estilos para los iconos en la navegación */
+#navegacion img {
+    width: 16px !important;
+    height: 16px !important;
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+}
