@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+# Agregar configuración de mongoengine
+import mongoengine
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -72,6 +74,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+mongoengine.connect(
+    db=os.environ.get('MONGO_DBNAME', 'votosdb'),
+    host=os.environ.get('MONGO_HOST', 'mongodb'),
+    port=int(os.environ.get('MONGO_PORT', 27017)),
+    username=os.environ.get('MONGO_USER', 'root'),
+    password=os.environ.get('MONGO_PASS', 'rootpassword'),
+    authentication_source='admin'
+)
 
 DATABASES = {
     'default': {
