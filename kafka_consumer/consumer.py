@@ -20,6 +20,35 @@ print(f"Topic: {KAFKA_TOPIC}")
 # Esperar a que Kafka esté disponible
 time.sleep(10)
 
+# Esperar a que Kafka esté disponible con reintentos
+max_retries = 10
+retry_delay = 5
+
+for attempt in range(max_retries):
+    try:
+        print(f"\nIntento {attempt + 1}/{max_retries} de conexión a Kafka...")
+        
+        consumer = KafkaConsumer(
+            KAFKA_TOPIC,
+            bootstrap_servers=[KAFKA_BROKER],
+            auto_offset_reset='earliest',
+            enable_auto_commit=True,
+            group_id='voting-consumer-group',
+            value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+            consumer_timeout_ms=1000
+        )
+        
+        print("Kafka Consumer conectado exitosamente")
+        break
+        
+    except NoBrokersAvailable:
+        if attempt < max_retries - 1:
+            print(f"Kafka no disponible. Reintentando en {retry_delay} segundos...")
+            time.sleep(retry_delay)
+        else:
+            print("No se pudo conectar a Kafka después de varios intentos")
+            raise
+
 # Inicializar componentes
 detector_anomalias = AnomalyDetector()
 blockchain = BlockchainIntegrator()

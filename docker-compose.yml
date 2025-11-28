@@ -61,6 +61,7 @@ services:
       - MONGO_PASS=${MONGO_PASS}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}  
     depends_on:
       - mongodb
     volumes:
@@ -85,6 +86,7 @@ services:
       - kafka
       - mongodb
       - ganache
+    restart: on-failure  # Reiniciar si falla
     volumes:
       - ./kafka_consumer:/app
     networks:

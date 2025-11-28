@@ -1,6 +1,5 @@
 from django.apps import AppConfig
 
-
-class KafkaConsumerConfig(AppConfig):
+class VotingappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'kafka_consumer'
+    name = 'votingapp'  # DEBE SER 'votingapp'

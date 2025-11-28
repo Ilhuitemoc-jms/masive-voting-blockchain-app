@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from db import MongoDB
-from serializers import VotoSerializer, PadronElectoralSerializer
+from .serializer import VotoSerializer, PadronElectoralSerializer
 from utils.crypto_utils import DataEncryptor, encrypt_fields
 from auth import generate_jwt_token, jwt_required
 from datetime import datetime
