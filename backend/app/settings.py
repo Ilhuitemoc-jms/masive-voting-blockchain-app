@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-# Agregar configuración de mongoengine
-import mongoengine
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # CORS Configuration para API y de la app de votos
+    'rest_framework',
+    'corsheaders',
+    'votingapp',  
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -74,35 +77,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-mongoengine.connect(
-    db=os.environ.get('MONGO_DBNAME', 'votosdb'),
-    host=os.environ.get('MONGO_HOST', 'mongodb'),
-    port=int(os.environ.get('MONGO_PORT', 27017)),
-    username=os.environ.get('MONGO_USER', 'root'),
-    password=os.environ.get('MONGO_PASS', 'rootpassword'),
-    authentication_source='admin'
-)
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': os.environ.get('MONGO_DBNAME', 'votosdb'),
-        'CLIENT': {
-            'host': os.environ.get('MONGO_HOST', 'mongodb'),
-            'port': int(os.environ.get('MONGO_PORT', 27017)),
-            'username': os.environ.get('MONGO_USER', 'mongo'),
-            'password': os.environ.get('MONGO_PASS', 'changeme'),
-        }
-    }
-}
-
-""" {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-} """
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -144,3 +118,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo
+
+# REST Framework config
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}

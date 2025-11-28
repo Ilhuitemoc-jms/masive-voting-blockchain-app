@@ -1,14 +1,8 @@
-#file de prueba
-FROM trufflesuite/ganache:latest
+# Ejemplo mínimo de Dockerfile para Ganache
+FROM node:16
 
-# Exponer puerto RPC
+RUN npm install -g ganache
+
 EXPOSE 8545
 
-# Comando para iniciar Ganache con configuración básica
-CMD ["node", "/app/ganache-core.docker.cli.js", \
-     "--host", "0.0.0.0", \
-     "--port", "8545", \
-     "--networkId", "5777", \
-     "--accounts", "10", \
-     "--defaultBalanceEther", "1000", \
-     "--gasLimit", "10000000"]
+CMD ["ganache", "--db=./db", "--host=0.0.0.0", "--port=8545"]

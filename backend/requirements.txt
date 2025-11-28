@@ -1,6 +1,9 @@
 Django==4.2.7
 pymongo==4.6.1
-mongoengine==0.28.2
 djangorestframework==3.14.0
 django-cors-headers==4.3.1
 python-dotenv==1.0.0
+
+#necesiario para encriptar los votos y autenticación
+PyJWT==2.8.0
+cryptography==41.0.7

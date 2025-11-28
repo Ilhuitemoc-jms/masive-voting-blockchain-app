@@ -23,7 +23,6 @@ services:
     networks:
       - voting-network
 
-
   # MONGODB (depende del backend) --------------
   mongodb:
     image: mongo:7.0
@@ -90,6 +89,32 @@ services:
       - ./kafka_consumer:/app
     networks:
       - voting-network
+
+  # AutoLM SERVICE -----------------------------
+  autolm_service:
+    build: ./autolm_service
+    container_name: voting-automl
+    ports:
+      - "8888:8888"  # JupyterLab 
+      - "4040:4040"  # Spark UI
+    environment:
+      - TZ=America/Mexico_City
+      - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_DBNAME=${MONGO_DBNAME}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+    volumes:
+      #setear la zona horario de México en el contenedor
+      - /usr/share/zoneinfo/America/Mexico_City:/etc/localtime:ro
+      - ./autolm_service/notebooks:/home/jovyan/notebooks
+      - ./autolm_service/models:/home/jovyan/models
+    networks:
+      - voting-network
+    depends_on:
+      - mongodb
 
 # VOLUMES ------------------------------------
 volumes:
