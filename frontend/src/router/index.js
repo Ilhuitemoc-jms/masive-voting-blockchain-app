@@ -15,13 +15,13 @@ const routes = [
     path: '/applications',
     name: 'Applications',
     component: ApplicationsView,
-    //meta: { requiresAuth: true }
+    meta: { requiresAuth: true }  // Ruta protegida
   },
   {
     path: '/voting',
     name: 'Voting',
     component: VotingForm,
-    //meta: { requiresAuth: true }
+    meta: { requiresAuth: true }  // Ruta protegida
   }
 ]
 
@@ -30,17 +30,31 @@ const router = createRouter({
   routes
 })
 
-// Guard de navegación para proteger rutas
+// ============================================
+// GUARD DE NAVEGACIÓN - PROTECCIÓN DE RUTAS
+// ============================================
+// Este guard verifica si el usuario tiene un token válido
+// antes de permitir acceso a rutas protegidas.
+//
+// Para proteger una ruta, agrega: meta: { requiresAuth: true }
+// en la definición de la ruta arriba.
+// ============================================
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('userToken')
+  // Verificar si hay token en localStorage
+  // El token se guarda con la clave 'token' en login.js
+  const token = localStorage.getItem('token')
+  const isAuthenticated = !!token
   
   if (to.meta.requiresAuth && !isAuthenticated) {
     // Si la ruta requiere autenticación y no hay token, redirige al login
-    next('/')
+    console.log('Ruta protegida, redirigiendo al login...')
+    next({ name: 'Login' })
   } else if (to.name === 'Login' && isAuthenticated) {
     // Si ya está autenticado y va al login, redirige a applications
-    next('/applications')
+    console.log('Ya autenticado, redirigiendo a applications...')
+    next({ name: 'Applications' })
   } else {
+    // Permitir navegación normal
     next()
   }
 })

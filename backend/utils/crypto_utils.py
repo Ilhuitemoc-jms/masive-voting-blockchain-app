@@ -7,7 +7,7 @@ import base64
 
 class DataEncryptor:
     """
-    Encripta y desencripta datos usando AES-256-CBC
+    Encripta y desencripta datos usando AES-256-CBC 
     """
     
     def __init__(self):

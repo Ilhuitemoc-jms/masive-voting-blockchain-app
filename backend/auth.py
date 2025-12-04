@@ -9,7 +9,7 @@ from db import MongoDB
 # Clave secreta para firmar tokens
 JWT_SECRET = settings.SECRET_KEY
 JWT_ALGORITHM = 'HS256'
-JWT_EXP_DELTA_SECONDS = 3600  # 1 hora
+JWT_EXP_DELTA_SECONDS = 10  # 10 minutos - Cambiar aquí para modificar la expiración del token
 
 def generate_jwt_token(user_data):
     """
@@ -17,7 +17,7 @@ def generate_jwt_token(user_data):
     """
     payload = {
         'user_id': str(user_data['_id']),
-        'cedula': user_data['cedula'],
+        'no_cuenta': user_data['no_cuenta'],
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=JWT_EXP_DELTA_SECONDS),
         'iat': datetime.datetime.utcnow()
     }

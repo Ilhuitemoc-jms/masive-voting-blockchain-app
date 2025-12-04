@@ -1,7 +1,6 @@
 # Serializers para validación de datos (sin usar Django ORM)
 from rest_framework import serializers
 
-
 class VotoSerializer(serializers.Serializer):
     """
     Serializer para validar estructura de un voto
@@ -40,15 +39,14 @@ class VotoSerializer(serializers.Serializer):
             raise serializers.ValidationError("CVR ID debe ser positivo")
         return value
 
-
 class PadronElectoralSerializer(serializers.Serializer):
     """
     Serializer para autenticación con padrón electoral
     """
-    cedula = serializers.CharField(max_length=20, required=True)
+    no_cuenta = serializers.CharField(max_length=20, required=True)
     clave_elector = serializers.CharField(max_length=50, required=True)
     
-    def validate_cedula(self, value):
+    def validate_no_cuenta(self, value):
         """
         Valida formato de cédula
         """

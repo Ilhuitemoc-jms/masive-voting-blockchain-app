@@ -35,7 +35,7 @@ def login(request):
         # Buscar en MongoDB en colección de padrón electoral
         collection = MongoDB.get_collection('padron_electoral')
         usuario = collection.find_one({
-            'cedula': serializer.validated_data['cedula'],
+            'no_cuenta': serializer.validated_data['no_cuenta'],
             'clave_elector': serializer.validated_data['clave_elector'],
             'ya_voto': False  # Verificar que no haya votado
         })
@@ -86,7 +86,7 @@ def crear_voto(request):
         
         # Generar hash único del votante (para blockchain)
         votante_hash = hashlib.sha256(
-            f"{request.user_data['cedula']}{datetime.utcnow()}".encode()
+            f"{request.user_data['no_cuenta']}{datetime.utcnow()}".encode()
         ).hexdigest()
         
         # Campos que van ENCRIPTADOS a MongoDB

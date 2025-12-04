@@ -118,7 +118,45 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo
+# ============================================
+# CONFIGURACIÓN CORS - Para desarrollo con credenciales
+# ============================================
+# Cuando usas withCredentials: true en el frontend,
+# NO puedes usar CORS_ALLOW_ALL_ORIGINS = True (wildcard *)
+# Debes especificar los orígenes permitidos explícitamente
+# ============================================
+
+# Permitir orígenes específicos (en lugar de todos con *)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Frontend Vite
+    "http://127.0.0.1:5173",  # Frontend Vite (alternativo)
+]
+
+# Permitir credenciales (cookies, headers de autorización, etc.)
+CORS_ALLOW_CREDENTIALS = True
+
+# Headers permitidos en las peticiones
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Métodos HTTP permitidos
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 # REST Framework config
 REST_FRAMEWORK = {

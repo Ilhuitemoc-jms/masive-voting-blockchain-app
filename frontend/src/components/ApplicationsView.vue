@@ -138,7 +138,6 @@
 
 <script setup>
 import BaseLayout from './BaseLayout.vue'
-import '../scripts/login.js'
 </script>
 
 <style src="../styles/login.css"></style>
