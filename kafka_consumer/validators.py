@@ -1,34 +1,68 @@
-# Validaciones básicas de estructura y formato
-def validar_voto(voto):
+# Validadores de estructura de datos de votos
+from datetime import datetime
+
+def validar_estructura_voto(voto):
     """
-    Valida que el voto tenga la estructura correcta
+    Valida que el voto tenga la estructura correcta y campos requeridos
+    No desencripta, solo verifica que los campos existan
     
-    Raises:
-        ValueError: Si el voto es inválido
+    Args:
+        voto: Diccionario con datos del voto
+    
+    Returns:
+        tuple: (es_valido: bool, mensaje_error: str)
     """
-    # Campos requeridos
-    campos_requeridos = ['voto_id', 'votante_hash', 'candidato_id', 'timestamp']
+    # Campos obligatorios
+    campos_requeridos = [
+        'votante_hash',
+        'candidato_id',
+        'timestamp',
+        'user_id'
+    ]
     
+    # Verificar campos requeridos
     for campo in campos_requeridos:
         if campo not in voto:
-            raise ValueError(f"Campo requerido faltante: {campo}")
+            return False, f"Campo requerido faltante: {campo}"
+        
+        if voto[campo] is None or voto[campo] == '':
+            return False, f"Campo requerido vacio: {campo}"
     
-    # Validar candidato_id
-    if not isinstance(voto['candidato_id'], int):
-        raise ValueError("candidato_id debe ser entero")
+    # Validar tipo de candidato_id
+    try:
+        candidato_id = int(voto['candidato_id'])
+        if candidato_id < 0:
+            return False, "candidato_id debe ser un numero positivo"
+    except (ValueError, TypeError):
+        return False, "candidato_id debe ser un numero entero"
     
-    if voto['candidato_id'] < 0 or voto['candidato_id'] > 4:
-        raise ValueError(f"candidato_id inválido: {voto['candidato_id']}")
-    
-    # Validar votante_hash
-    if not isinstance(voto['votante_hash'], str):
-        raise ValueError("votante_hash debe ser string")
-    
+    # Validar longitud de votante_hash (debe ser SHA256 = 64 caracteres hex)
     if len(voto['votante_hash']) != 64:
-        raise ValueError("votante_hash debe ser string de 64 caracteres (SHA256)")
+        return False, "votante_hash debe tener 64 caracteres (SHA256)"
     
-    # Validar timestamp
-    if not isinstance(voto['timestamp'], str):
-        raise ValueError("timestamp debe ser string en formato ISO 8601")
+    # Validar que timestamp sea valido
+    try:
+        if isinstance(voto['timestamp'], str):
+            datetime.fromisoformat(voto['timestamp'].replace('Z', '+00:00'))
+    except (ValueError, AttributeError):
+        return False, "timestamp invalido"
     
-    return True
+    return True, "OK"
+
+
+def validar_candidato(candidato_id, max_candidatos=10):
+    """
+    Valida que el candidato exista en el rango permitido
+    
+    Args:
+        candidato_id: ID del candidato
+        max_candidatos: Numero maximo de candidatos permitidos
+    
+    Returns:
+        bool: True si es valido, False si no
+    """
+    try:
+        candidato = int(candidato_id)
+        return 0 <= candidato < max_candidatos
+    except (ValueError, TypeError):
+        return False

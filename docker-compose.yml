@@ -20,8 +20,21 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_NUM_PARTITIONS: 3
+      # Lineas de Optimización
+      KAFKA_NUM_NETWORK_THREADS: 8
+      KAFKA_NUM_IO_THREADS: 8
+      KAFKA_SOCKET_SEND_BUFFER_BYTES: 102400
+      KAFKA_SOCKET_RECEIVE_BUFFER_BYTES: 102400
+      KAFKA_SOCKET_REQUEST_MAX_BYTES: 104857600
     networks:
-      - voting-network
+    - voting-network
+    # AGREGAR HEALTH CHECK
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-metadata.sh --snapshot /tmp/kraft-combined-logs/__cluster_metadata-0/00000000000000000000.log --print-data-log || exit 0"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
 
   # MONGODB (depende del backend) --------------
   mongodb:
@@ -35,8 +48,16 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_DBNAME}
     volumes:
       - mongo_data:/data/db
+      - ./backend/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - voting-network
+    #buena practica para corroborar que funciona de manera correcta el contenedor y la base
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   # BACKEND DJANGO -----------------------------
   backend:
@@ -53,8 +74,14 @@ services:
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}  
+      # LÍNEAS PARA KAFKA PRODUCER
+      - KAFKA_BROKER=${KAFKA_BROKER}
+      - KAFKA_TOPIC=${KAFKA_TOPIC}
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
     volumes:
       - ./backend:/app
     networks:
@@ -72,9 +99,12 @@ services:
       - MONGO_DBNAME=${MONGO_DBNAME}
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASS=${MONGO_PASS}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
     depends_on:
-      - kafka
-      - mongodb
+      kafka:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
     restart: on-failure  # Reiniciar si falla
     volumes:
       - ./kafka_consumer:/app

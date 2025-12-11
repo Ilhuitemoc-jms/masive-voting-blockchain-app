@@ -125,7 +125,7 @@ def crear_voto(request):
             {'$set': {'ya_voto': True}}
         )
         
-        # TODO: Aquí enviarías al Kafka para procesar blockchain
+        # todo: Aquí enviarías al Kafka para procesar blockchain
         # Datos para blockchain (solo lo público):
         voto_blockchain = {
             "votante_hash": votante_hash,
