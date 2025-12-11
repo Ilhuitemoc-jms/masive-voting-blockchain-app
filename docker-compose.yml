@@ -65,6 +65,8 @@ services:
     container_name: voting-backend
     ports:
       - "8000:8000"
+    env_file:
+      - .env        # ← DEBE EXISTIR ESTA LÍNEA
     environment:
       - MONGO_HOST=${MONGO_HOST}
       - MONGO_PORT=${MONGO_PORT}

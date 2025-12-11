@@ -7,3 +7,9 @@ python-dotenv==1.0.0
 #necesiario para encriptar los votos y autenticación
 PyJWT==2.8.0
 cryptography==41.0.7
+kafka-python==2.0.2
+lz4==4.3.2
+
+# Ed25519 + AES-128-CTR para encriptación de datos sensibles
+#nacl==1.5.0
+PyNaCl==1.5.0

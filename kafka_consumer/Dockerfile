@@ -1,5 +1,8 @@
 FROM python:3.11-slim
 
+# Evitar que Python buffere la salida (logs inmediatos en Docker)
+ENV PYTHONUNBUFFERED=1
+
 # Establecer directorio de trabajo
 WORKDIR /app
 

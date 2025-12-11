@@ -99,6 +99,11 @@ const candidatos = ref([
   { numero: 10, imagen: '/assets/Images/candidatos/10.jpg', nombre: 'Leonardo Lomelí Vanegas' },
   { numero: 11, imagen: '/assets/Images/candidatos/11.jpg', nombre: 'María Esperanza Martínez Romero' },
   { numero: 12, imagen: '/assets/Images/candidatos/12.jpg', nombre: 'Daniel Trejo Medina' },
+  { numero: 10, imagen: '/assets/Images/candidatos/13.jpg', nombre: 'Imanol Ordorika Sacristán' },
+  { numero: 11, imagen: '/assets/Images/candidatos/14.jpg', nombre: 'Guadalupe Valencia García' },
+  { numero: 12, imagen: '/assets/Images/candidatos/15.jpg', nombre: 'Ambrosio Francisco Javier Velasco Gómez' },
+  { numero: 10, imagen: '/assets/Images/candidatos/16.jpg', nombre: 'Luz del Carmen Alicia Vilchis Esquivel' },
+  { numero: 11, imagen: '/assets/Images/candidatos/17.jpg', nombre: 'Domingo Alberto Vital Díaz' },
 ])
 
 // Función para emitir voto

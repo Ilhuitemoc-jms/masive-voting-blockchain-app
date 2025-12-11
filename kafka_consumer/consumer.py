@@ -73,6 +73,8 @@ try:
     # Buffer para procesamiento en lotes
     buffer_votos = []
     BATCH_SIZE = 100
+    last_flush_time = time.time()
+    FLUSH_INTERVAL = 5  # Segundos máximos para esperar antes de procesar el buffer
     
     for message in consumer:
         try:
@@ -89,16 +91,23 @@ try:
             # Agregar al buffer (YA VIENE ENCRIPTADO DEL BACKEND)
             buffer_votos.append(voto)
             
-            # Procesar lote cuando se alcanza el tamaño
-            if len(buffer_votos) >= BATCH_SIZE:
+            # Procesar lote cuando se alcanza el tamaño O pasa el intervalo de tiempo
+            current_time = time.time()
+            should_flush = (
+                len(buffer_votos) >= BATCH_SIZE or 
+                (len(buffer_votos) > 0 and current_time - last_flush_time >= FLUSH_INTERVAL)
+            )
+            
+            if should_flush:
                 insertados = db.insertar_lote_votos(buffer_votos)
                 votos_procesados += insertados
                 
                 print(f"[OK] Lote insertado: {insertados} votos")
                 print(f"     Total procesados: {votos_procesados}")
                 
-                # Limpiar buffer
+                # Limpiar buffer y actualizar tiempo de flush
                 buffer_votos = []
+                last_flush_time = time.time()
                 
                 # Estadísticas cada 500 votos
                 if votos_procesados % 500 == 0:

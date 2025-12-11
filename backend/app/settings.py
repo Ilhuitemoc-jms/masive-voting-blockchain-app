@@ -164,3 +164,19 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
 }
+
+
+# --------------------------- CONFIGURACIÓN DE KAFKA ---------------------------
+
+KAFKA_CONFIG = {
+    'bootstrap_servers': [os.environ.get('KAFKA_BROKER', 'kafka:9092')],
+    'acks': 1,  # Debe ser entero, no string
+    'retries': 3,
+    'batch_size': 16384,
+    'linger_ms': 10,
+    'buffer_memory': 67108864,
+    'compression_type': 'lz4',
+    'request_timeout_ms': 30000,
+}
+
+KAFKA_TOPIC = os.environ.get('KAFKA_TOPIC', 'voting_data_stream')
