@@ -27,7 +27,7 @@ class VotoSerializer(serializers.Serializer):
         Valida que el candidato exista en el rango permitido
         """
         # Suponiendo que tienes 5 candidatos (0-4)
-        if value < 0 or value > 4:
+        if value < 0 or value > 18:
             raise serializers.ValidationError("El candidato debe estar entre 0 y 4")
         return value
     

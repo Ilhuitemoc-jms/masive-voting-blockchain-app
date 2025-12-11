@@ -130,6 +130,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Frontend Vite
     "http://127.0.0.1:5173",  # Frontend Vite (alternativo)
+    "http://localhost:5174",  # Frontend Vite (puerto alternativo)
+    "http://127.0.0.1:5174",  # Frontend Vite (puerto alternativo)
 ]
 
 # Permitir credenciales (cookies, headers de autorización, etc.)

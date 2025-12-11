@@ -47,32 +47,66 @@
             Papeleta Digital
           </h1>
           <p> 
-            Desde esta página puedes emitir tu voto encriptado para la votación actual. Para ello es necesario inicializar tu wallet para la red local. Recuerda que tu voto se emite con tecnología ethereum (local, servidor de la facultad) sobre cadenas de datos. En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide estos datos podrías ser victima de un fraude, comunicate al consejo estudiantil.
+            Desde esta página puedes emitir tu voto para la votación para Rector. Para ello es necesario inicializar tu wallet para la red local. <br>
+            Recuerda que tu voto se emite con encriptación AES-256 y firma electronica Ed25519, además de procesarse en la Red Local Mediante ECDSA (local, nodo UNAM) sobre cadenas de datos. <br>
+            En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide estos datos podrías ser victima de un fraude, comunicate al consejo estudiantil. <br>
           </p>
 
-          <!-- Sección de candidatos -->
-          <div class="candidatos-container">
-            <div 
-              v-for="(candidato, index) in candidatos" 
-              :key="index" 
-              class="candidato-card"
-            >
-              <div class="candidato-imagen-container">
+          <!-- Vista de voto exitoso -->
+          <div v-if="votoExitoso && candidatoVotado" class="voto-exitoso-container">
+            <div class="voto-exitoso-card">
+              <div class="candidato-imagen-container-exitoso">
                 <img 
-                  :src="candidato.imagen" 
-                  :alt="`Candidato ${candidato.numero}`"
-                  class="candidato-imagen"
+                  :src="candidatoVotado.imagen" 
+                  :alt="`Candidato ${candidatoVotado.numero}`"
+                  class="candidato-imagen-exitoso"
                 />
               </div>
-              <button 
-                class="btn-votar"
-                @click="emitirVoto(candidato.numero)"
-              >
-                Votar por:<br>
-                {{ candidato.nombre || `Candidato ${candidato.numero}` }}
-              </button>
+              <div class="mensaje-exitoso">
+                <span class="icono-check">🗳️</span>
+                <p class="texto-confirmacion">Voto registrado correctamente para:</p>
+                <p class="nombre-candidato">{{ candidatoVotado.nombre }}</p>
+              </div>
             </div>
           </div>
+
+          <!-- Vista normal: selección de candidatos -->
+          <template v-else>
+            <!-- Mensaje de error (solo errores, éxito se muestra arriba) -->
+            <div v-if="mensaje && tipoMensaje === 'error'" class="mensaje-estado error">
+              {{ mensaje }}
+            </div>
+
+            <!-- Sección de candidatos -->
+            <div class="candidatos-container">
+              <div 
+                v-for="(candidato, index) in candidatos" 
+                :key="index" 
+                class="candidato-card"
+              >
+                <div class="candidato-imagen-container">
+                  <img 
+                    :src="candidato.imagen" 
+                    :alt="`Candidato ${candidato.numero}`"
+                    class="candidato-imagen"
+                  />
+                </div>
+                <button 
+                  class="btn-votar"
+                  :disabled="enviandoVoto"
+                  @click="emitirVoto(candidato.numero)"
+                >
+                  <template v-if="enviandoVoto">
+                    Enviando voto...
+                  </template>
+                  <template v-else>
+                    Votar por:<br>
+                    {{ candidato.nombre || `Candidato ${candidato.numero}` }}
+                  </template>
+                </button>
+              </div>
+            </div>
+          </template>
 
         </div>
       </div>
@@ -83,7 +117,15 @@
 <script setup>
 import { ref } from 'vue'
 import BaseLayout from './BaseLayout.vue'
+import axiosInstance from '../axiosConfig.js'
 import '../scripts/login.js'
+
+// Estado para mostrar mensajes al usuario
+const mensaje = ref('')
+const tipoMensaje = ref('') // 'success' o 'error'
+const enviandoVoto = ref(false)
+const votoExitoso = ref(false)
+const candidatoVotado = ref(null)
 
 // Lista de candidatos con sus imágenes   
 const candidatos = ref([
@@ -107,11 +149,54 @@ const candidatos = ref([
 ])
 
 // Función para emitir voto
-const emitirVoto = (numeroCandidato) => {
+const emitirVoto = async (numeroCandidato) => {
   const candidato = candidatos.value.find(c => c.numero === numeroCandidato)
-  if (candidato) {
-    console.log(`Voto emitido para: ${candidato.nombre || `Candidato ${candidato.numero}`}`)
-    // Aquí puedes agregar la lógica para emitir el voto encriptado
+  if (!candidato) return
+
+  // Evitar múltiples envíos
+  if (enviandoVoto.value) return
+  enviandoVoto.value = true
+  mensaje.value = ''
+
+  // Datos del voto (hardcodeados para prueba, solo cambia candidato_id)
+  const datosVoto = {
+    cvr_id: 2599,
+    precinct_medst: "0498 PEPPERWOOD",
+    precinct_cvr: "0498-00 WHITE | 0498-99 PLATINUM",
+    office: "US PRESIDENT",
+    district: "FEDERAL",
+    candidate: candidato.nombre || `Candidato ${candidato.numero}`,
+    magnitude: "1",
+    party: null,
+    party_detailed: "WRITEIN",
+    state: "ARIZONA",
+    county: "MARICOPA",
+    voting_hour: new Date().toLocaleTimeString('en-GB'),
+    candidato_id: numeroCandidato
+  }
+
+  try {
+    console.log(`Enviando voto para: ${candidato.nombre || `Candidato ${candidato.numero}`}`)
+    
+    const response = await axiosInstance.post('votos/crear/', datosVoto)
+    
+    if (response.data.success) {
+      mensaje.value = `Voto registrado correctamente para:\n${candidato.nombre}`
+      tipoMensaje.value = 'success'
+      votoExitoso.value = true
+      candidatoVotado.value = candidato
+      console.log('Voto enviado exitosamente:', response.data)
+    } else {
+      mensaje.value = `❌ Error: ${response.data.error || 'No se pudo registrar el voto'}`
+      tipoMensaje.value = 'error'
+    }
+  } catch (error) {
+    console.error('Error al enviar voto:', error)
+    const errorMsg = error.response?.data?.error || error.message || 'Error de conexión'
+    mensaje.value = `❌ Error: ${errorMsg}`
+    tipoMensaje.value = 'error'
+  } finally {
+    enviandoVoto.value = false
   }
 }
 </script>
@@ -119,6 +204,94 @@ const emitirVoto = (numeroCandidato) => {
 <style src="../styles/login.css"></style>
 
 <style scoped>
+/* ===== VISTA DE VOTO EXITOSO ===== */
+.voto-exitoso-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.voto-exitoso-card {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border: 2px solid #28a745;
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);
+  max-width: 700px;
+}
+
+.candidato-imagen-container-exitoso {
+  flex-shrink: 0;
+  width: 120px;
+  border: 3px solid #28a745;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.candidato-imagen-exitoso {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.mensaje-exitoso {
+  text-align: left;
+}
+
+.icono-check {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.texto-confirmacion {
+  font-size: 18px;
+  color: #155724;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.nombre-candidato {
+  font-size: 24px;
+  color: #155724;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ===== MENSAJES DE ESTADO ===== */
+.mensaje-estado {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.mensaje-estado.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensaje-estado.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.btn-votar:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .candidatos-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -184,10 +357,39 @@ const emitirVoto = (numeroCandidato) => {
   }
 }
 
+@media (max-width: 768px) {
+  .voto-exitoso-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    gap: 25px;
+  }
+  
+  .mensaje-exitoso {
+    text-align: center;
+  }
+  
+  .candidato-imagen-container-exitoso {
+    width: 100px;
+  }
+}
+
 @media (max-width: 480px) {
   .candidatos-container {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  
+  .voto-exitoso-card {
+    padding: 25px 20px;
+  }
+  
+  .nombre-candidato {
+    font-size: 20px;
+  }
+  
+  .candidato-imagen-container-exitoso {
+    width: 90px;
   }
 }
 </style>

@@ -9,7 +9,7 @@ from db import MongoDB
 # Clave secreta para firmar tokens
 JWT_SECRET = settings.SECRET_KEY
 JWT_ALGORITHM = 'HS256'
-JWT_EXP_DELTA_SECONDS = 6000  # 10 minutos
+JWT_EXP_DELTA_SECONDS = 600000  # 10 minutos
 
 def generate_jwt_token(user_data):
     """

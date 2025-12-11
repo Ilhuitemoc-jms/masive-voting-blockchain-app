@@ -40,6 +40,7 @@ services:
   mongodb:
     image: mongo:7.0
     container_name: voting-mongodb
+    command: mongod --quiet --logpath /dev/null #bajar el verbose
     ports:
       - "27017:27017"
     environment:
