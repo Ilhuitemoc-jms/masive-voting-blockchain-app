@@ -47,7 +47,7 @@
             Papeleta Digital
           </h1>
           <p> 
-            Desde esta página puedes emitir tu voto encriptado para la votación actual. Para ello es necesario inicializar tu extensión ganache. Recuerda que tu voto se emite con tecnología ethereum (local, servidor de la facultad) sobre cadenas de datos. En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide estos datos podrías ser victima de un fraude, comunicate al consejo estudiantil.
+            Desde esta página puedes emitir tu voto encriptado para la votación actual. Para ello es necesario inicializar tu wallet para la red local. Recuerda que tu voto se emite con tecnología ethereum (local, servidor de la facultad) sobre cadenas de datos. En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide estos datos podrías ser victima de un fraude, comunicate al consejo estudiantil.
           </p>
 
           <!-- Sección de candidatos -->
