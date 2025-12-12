@@ -47,10 +47,20 @@
             Papeleta Digital
           </h1>
           <p> 
-            Desde esta página puedes emitir tu voto para la votación para Rector. Para ello es necesario inicializar tu wallet para la red local. <br>
-            Recuerda que tu voto se emite con encriptación AES-256 y firma electronica Ed25519, además de procesarse en la Red Local Mediante ECDSA (local, nodo UNAM) sobre cadenas de datos. <br>
-            En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide estos datos podrías ser victima de un fraude, comunicate al consejo estudiantil. <br>
+            La <strong>Universidad Nacional Autonoma de México</strong> a través de la Junta de Gobierno y en virtud del <strong> Artículo 6 en su fracción I de la Ley Orgánica</strong>,
+            inicia formalmente el procedimiento para nombrar a la persona titular de la Rectoría de la Universidad para el periodo <strong> 2023-2027.</strong><br>
+            <br>Esta página estará habilitado desde los portales propietarios de todas las Facultades, Institutos, Posgrados, ENES y Organismos que integran a la Universidad.
+            <h3>
+              <strong> Instrucciones: </strong>
+            </h3>
+            <ul style="margin-left: 40px;">
+               <li>En las siguientes líneas encontrarás a los candidatos por la rectoría de la Universidad, porfavor selecciona el de tu preferencia dando click encima de el botón <strong> "Votar por: *CANDIDATO*"</strong></li>
+              <br>  <li>Medita correctamente tu opción antes de enviarla ya que solo se podrá acceder a este sitio una única vez. </li>
+              <br>  <li>Una vez emitido tú botón aparecerá la imagen de tu candidato seleccionado en verde con la leyenda <br> <strong>Voto registrado correctamente para:</strong></li>
+            </ul>
           </p>
+
+          <p style="text-align: center;"> <strong> Disponible desde las 8:00 horas hasta las 20:00 horas del día 1ero de noviembre del 2023. </strong></p>
 
           <!-- Vista de voto exitoso -->
           <div v-if="votoExitoso && candidatoVotado" class="voto-exitoso-container">
@@ -79,23 +89,16 @@
 
             <!-- Sección de candidatos -->
             <div class="candidatos-container">
-              <div 
-                v-for="(candidato, index) in candidatos" 
-                :key="index" 
-                class="candidato-card"
-              >
+              <div v-for="(candidato, index) in candidatos" :key="index" class="candidato-card">
                 <div class="candidato-imagen-container">
-                  <img 
-                    :src="candidato.imagen" 
-                    :alt="`Candidato ${candidato.numero}`"
-                    class="candidato-imagen"
-                  />
+                  <!-- Estilo particular para la imagen 18 para que encaje con todas las demas -->
+                  <img :src="candidato.imagen" :alt="`Candidato ${candidato.numero}`" class="candidato-imagen" 
+                  :style="candidato.numero === 18 ? { 
+                        width: '88px', 
+                        height: '118px',
+                      } : {}"/>
                 </div>
-                <button 
-                  class="btn-votar"
-                  :disabled="enviandoVoto"
-                  @click="emitirVoto(candidato.numero)"
-                >
+                <button class="btn-votar" :disabled="enviandoVoto" @click="emitirVoto(candidato.numero)" >
                   <template v-if="enviandoVoto">
                     Enviando voto...
                   </template>
@@ -107,6 +110,16 @@
               </div>
             </div>
           </template>
+
+          <p>Desde esta página puedes emitir tu voto para la votación para Rector. Para ello es necesario inicializar tu wallet-unam para la red local de la universidad <br>
+            <br>Recuerda que tu voto se emite con encriptación AES-256 y firma electronica Ed25519, además de procesarse en la Red Local (local, nodo UNAM) sobre cadenas de datos. <br>
+            En ningun momento se pide verificar datos o emitir comprobantes, si alguien te pide esta información podrías ser victima de un fraude, comunicate con nosotros al departamento de seguridad informatica de la Universidad a tráves de este <a href="https://www.seguridad.unam.mx/incidentes">Link</a> 
+            o escribenos una un correo a <a href="csi.incidentes@unam.mx">csi.incidentes@unam.mx</a> <br>
+          </p>
+
+          <p style="text-align: center;"> 
+            Proceso con validez institucional, respaldado en la normativa de la Universidad Nacional Autonoma de Méxio, <strong> Artículo 6, fracción I de la Ley Orgánica; artículo 16 del Reglamento Interior de la Junta de Gobierno; artículo 9 del Reglamento Interior de la Junta de Gobierno; artículo 9 de la Ley Orgánica; y artículo 30 del Estatuto General.</strong>
+          </p>
 
         </div>
       </div>
@@ -141,11 +154,12 @@ const candidatos = ref([
   { numero: 10, imagen: '/assets/Images/candidatos/10.jpg', nombre: 'Leonardo Lomelí Vanegas' },
   { numero: 11, imagen: '/assets/Images/candidatos/11.jpg', nombre: 'María Esperanza Martínez Romero' },
   { numero: 12, imagen: '/assets/Images/candidatos/12.jpg', nombre: 'Daniel Trejo Medina' },
-  { numero: 10, imagen: '/assets/Images/candidatos/13.jpg', nombre: 'Imanol Ordorika Sacristán' },
-  { numero: 11, imagen: '/assets/Images/candidatos/14.jpg', nombre: 'Guadalupe Valencia García' },
-  { numero: 12, imagen: '/assets/Images/candidatos/15.jpg', nombre: 'Ambrosio Francisco Javier Velasco Gómez' },
-  { numero: 10, imagen: '/assets/Images/candidatos/16.jpg', nombre: 'Luz del Carmen Alicia Vilchis Esquivel' },
-  { numero: 11, imagen: '/assets/Images/candidatos/17.jpg', nombre: 'Domingo Alberto Vital Díaz' },
+  { numero: 13, imagen: '/assets/Images/candidatos/13.jpg', nombre: 'Imanol Ordorika Sacristán' },
+  { numero: 14, imagen: '/assets/Images/candidatos/14.jpg', nombre: 'Guadalupe Valencia García' },
+  { numero: 15, imagen: '/assets/Images/candidatos/15.jpg', nombre: 'Ambrosio Francisco Javier Velasco Gómez' },
+  { numero: 16, imagen: '/assets/Images/candidatos/16.jpg', nombre: 'Luz del Carmen Alicia Vilchis Esquivel' },
+  { numero: 17, imagen: '/assets/Images/candidatos/17.jpg', nombre: 'Domingo Alberto Vital Díaz' },
+  { numero: 18, imagen: '/assets/Images/candidatos/18.jpg', nombre: 'ANULAR VOTO' },
 ])
 
 // Función para emitir voto
@@ -187,13 +201,13 @@ const emitirVoto = async (numeroCandidato) => {
       candidatoVotado.value = candidato
       console.log('Voto enviado exitosamente:', response.data)
     } else {
-      mensaje.value = `❌ Error: ${response.data.error || 'No se pudo registrar el voto'}`
+      mensaje.value = `Error: ${response.data.error || 'No se pudo registrar el voto'}`
       tipoMensaje.value = 'error'
     }
   } catch (error) {
     console.error('Error al enviar voto:', error)
     const errorMsg = error.response?.data?.error || error.message || 'Error de conexión'
-    mensaje.value = `❌ Error: ${errorMsg}`
+    mensaje.value = `Error: ${errorMsg}`
     tipoMensaje.value = 'error'
   } finally {
     enviandoVoto.value = false
