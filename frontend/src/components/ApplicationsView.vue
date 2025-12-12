@@ -125,7 +125,7 @@
               <ul>
                 <li>
                   <a href="/voting">Papeleta Digital</a>
-                  <p>Ingresa para participar en la votación activa</p>
+                  <p>Ingresa para participar en la votación activa para <br><strong> Rector de la Universidad Nacional Autónoma de México periodo 2023-2027</strong></p>
                 </li>
               </ul>
             </div>

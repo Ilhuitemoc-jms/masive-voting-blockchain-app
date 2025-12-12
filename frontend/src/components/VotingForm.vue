@@ -58,6 +58,7 @@
               <br>  <li>Medita correctamente tu opción antes de enviarla ya que solo se podrá acceder a este sitio una única vez. </li>
               <br>  <li>Una vez emitido tú botón aparecerá la imagen de tu candidato seleccionado en verde con la leyenda <br> <strong>Voto registrado correctamente para:</strong></li>
             </ul>
+            
           </p>
 
           <p style="text-align: center;"> <strong> Disponible desde las 8:00 horas hasta las 20:00 horas del día 1ero de noviembre del 2023. </strong></p>
