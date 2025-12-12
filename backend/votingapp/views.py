@@ -95,9 +95,8 @@ def crear_voto(request):
         
         # Campos que se encriptan
         campos_sensibles = [
-            'precinct_medst', 'precinct_cvr', 'office', 'district',
-            'state', 'county', 'magnitude', 'party', 'party_detailed',
-            'voting_hour', 'candidate'
+            'precinct_medst', 'precinct_cvr', 'district',
+            'state', 'county', 'magnitude', 'party', 'party_detailed', 'candidate'
         ]
         
         # Encriptar datos sensibles

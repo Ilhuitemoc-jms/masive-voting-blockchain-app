@@ -43,9 +43,9 @@ DATOS_ESTATICOS = {
 
 # Parametros de configuracion para el proceso de generacion masiva
 CONFIG = {
-    'VOTOS_POR_SEGUNDO': 4500,
+    'VOTOS_POR_SEGUNDO': 5000,
     'DURACION_SEGUNDOS': 60,
-    'CONCURRENCIA': 1500,
+    'CONCURRENCIA': 4000,
     'CVR_ID_INICIAL': 2599
 }
 
