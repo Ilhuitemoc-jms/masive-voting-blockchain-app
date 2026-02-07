@@ -50,7 +50,8 @@ CONFIG = {
 }
 
 # Variable global que almacena el token JWT de autenticacion
-token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzY2MDM4ODY3LCJpYXQiOjE3NjU0Mzg4Njd9.7z3efbixDiOBjsuOWMfS4NVNqY1dQf9PuZNv7q7z1po"
+token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzcwNjYzMzU1LCJpYXQiOjE3NzAwNjMzNTV9.G5Mi1Rimcwh-Od52nDD9c1fySqrp15VPQ-_siquFu1Q"
+SPINNER_CHARS = ['◜', '◠', '◝', '◞', '◡', '◟']
 
 async def autenticar(session):
     """
@@ -62,7 +63,7 @@ async def autenticar(session):
     
     # Datos de credenciales para el proceso de autenticacion
     credenciales = {
-            "no_cuenta": "317099090",
+            "no_cuenta": "",
             "clave_elector": "MRSNIL00113009H700"
         }
     print(credenciales)
@@ -105,7 +106,7 @@ async def enviar_voto(session, numero_voto, semaforo):
     Parametro numero_voto: numero secuencial del voto para tracking
     Parametro semaforo: control de concurrencia mediante asyncio.Semaphore
     """
-    # Adquisicion del semaforo para control de concurrencia
+    # semaforo para control de concurrencia
     async with semaforo:
         # Generacion de datos aleatorios para este voto
         datos_voto = generar_datos_voto(numero_voto)
@@ -115,28 +116,27 @@ async def enviar_voto(session, numero_voto, semaforo):
             'Authorization': f'Bearer {token_autenticacion}',
             'Content-Type': 'application/json'
         }
+
+        # Calculo del indice del caracter de animacion usando modulo
+        spinner_index = numero_voto % len(SPINNER_CHARS)
+        # Seleccion del caracter de carga correspondiente al voto actual
+        loading_char = SPINNER_CHARS[spinner_index]
         
         try:
             # Peticion POST asincrona al endpoint de votos
             async with session.post(f'{API_URL}/votos/crear/', json=datos_voto, headers=headers) as response:
                 # Verificacion de respuesta exitosa del servidor incluyendo procesamiento asincrono
                 if response.status in [200, 201, 202]:
-                    # Imprimir solo cada 5000 votos exitosos usando operador modulo
-                    if numero_voto % 5000 == 0:
-                        print(f'voto de prueba {numero_voto}, posteado exitosamente (status {response.status})')
-                else:
-                    # Imprimir errores solo cada 5000 votos con error
-                    if numero_voto % 5000 == 0:
-                        print(f'voto de prueba {numero_voto}, error status {response.status}')
+                    # Impresion completa en una sola linea que se sobrescribe continuamente
+                    print(f'\r------- Generando registros {loading_char} ------- Voto número {numero_voto} -------', end='', flush=True)
+    
         except Exception as e:
-            # Imprimir excepciones solo cada 5000 votos con excepcion
-            if numero_voto % 5000 == 0:
-                print(f'voto de prueba {numero_voto}, error: {e}')
-
+            # Impresion de error en una sola linea que se sobrescribe
+            print(f'\r------- Error en generación {loading_char} ------- Voto {numero_voto}, error: {e} --------------------------', end='', flush=True)
 
 async def generar_votos_masivos():
     """
-    Funcion principal asincrona que coordina la generacion masiva de votos
+    Funcion principal asincrona que coordina la generacion masiva de votos  
     Implementa control de concurrencia y reutilizacion de sesion HTTP
     """
     print('\n----- INICIANDO GENERACION MASIVA DE VOTOS -----\n')
