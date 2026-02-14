@@ -1,0 +1,39 @@
+meta {
+  name: Votar
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8000/api/votos/crear/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzY1NDQxMTg4LCJpYXQiOjE3NjU0MzUxODh9.o1zz_X_G4it9LosJUmbeWYaXusiPUHsGHY5qTPxrRaU
+}
+
+body:json {
+  {
+      "cvr_id": 2599,
+      "precinct_medst": "0498 PEPPERWOOD",
+      "precinct_cvr": "0498-00 WHITE | 0498-99 PLATINUM",
+      "office": "US PRESIDENT",
+      "district": "FEDERAL",
+      "candidate": "HOWIE HAWKINS",
+      "magnitude": "1",
+      "party": null,
+      "party_detailed": "WRITEIN",
+      "state": "ARIZONA",
+      "county": "MARICOPA",
+      "voting_hour": "15:46:10",
+      "candidato_id": 1
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

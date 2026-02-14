@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "apis test"
+  type: workspace
+
+collections:
+  - name: "Pruebas"
+    path: "collections\\Pruebas"
+
+specs:
+
+docs: ''

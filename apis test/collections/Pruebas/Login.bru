@@ -1,0 +1,26 @@
+meta {
+  name: Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/api/login/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "no_cuenta": "317099090",
+      "clave_elector": "MRSNIL00113009H700"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

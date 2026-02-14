@@ -1,0 +1,39 @@
+meta {
+  name: Votos
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8000/api/votos/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzY1NDM3ODI3LCJpYXQiOjE3NjU0MzE4Mjd9.XY17DXfXYedpKDXyVxlNSZ2fXfaqzKouzSTcSvAiuUc
+}
+
+body:json {
+  {
+      "cvr_id": 2599,
+      "precinct_medst": "0498 PEPPERWOOD",
+      "precinct_cvr": "0498-00 WHITE | 0498-99 PLATINUM",
+      "office": "US PRESIDENT",
+      "district": "FEDERAL",
+      "candidate": "HOWIE HAWKINS",
+      "magnitude": "1",
+      "party": null,
+      "party_detailed": "WRITEIN",
+      "state": "ARIZONA",
+      "county": "MARICOPA",
+      "voting_hour": "15:46:10",
+      "candidato_id": 1
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}
