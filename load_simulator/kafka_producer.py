@@ -50,7 +50,7 @@ CONFIG = {
 }
 
 # Variable global que almacena el token JWT de autenticacion
-token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzcwNjYzMzU1LCJpYXQiOjE3NzAwNjMzNTV9.G5Mi1Rimcwh-Od52nDD9c1fySqrp15VPQ-_siquFu1Q"
+token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzc0NTgwODc0LCJpYXQiOjE3NzM5ODA4NzR9.w47Vsw6FkdK3lszZcNq-nQf7uaGsgi_rLJzSnNwnRmI"
 SPINNER_CHARS = ['◜', '◠', '◝', '◞', '◡', '◟']
 
 async def autenticar(session):

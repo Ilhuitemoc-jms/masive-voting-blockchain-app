@@ -1,0 +1,17 @@
+{
+    "title": "Massive Blockchain Voting System - Anomaly Detection with AutoML",
+    "upload_type": "software",
+    "description": "Massive voting application with Django backend, Apache Kafka streaming and blockchain network proposal for Mexico. Developed as undergraduate thesis at UNAM.",
+    "creators": [
+      {
+        "name": "Martínez Santiago, Ilhuitemoc Jesús",
+        "affiliation": "National Autonomous University of Mexico (UNAM)"
+      }
+    ],
+    "keywords": [
+      "blockchain", "voting system", "Django", "Apache Kafka",
+      "LSTM", "anomaly detection", "Solidity", "AutoML"
+    ],
+    "license": "MIT"
+  }
+  
