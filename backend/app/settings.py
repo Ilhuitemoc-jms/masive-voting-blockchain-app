@@ -172,7 +172,7 @@ REST_FRAMEWORK = {
 
 KAFKA_CONFIG = {
     'bootstrap_servers': [os.environ.get('KAFKA_BROKER', 'kafka:9092')],
-    'acks': 1,  # Debe ser entero, no string
+    'acks': 1,
     'retries': 3,
     'batch_size': 16384,
     'linger_ms': 10,

@@ -84,7 +84,6 @@ class VotingKafkaProducer:
             self._producer.close()
             logger.info("Kafka Producer cerrado")
 
-
 def obtener_productor():
     """
     Obtiene la instancia Singleton del productor

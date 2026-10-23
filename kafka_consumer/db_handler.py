@@ -1,7 +1,7 @@
 # Manejador de operaciones en MongoDB para insercion batch
 from pymongo import MongoClient
 from datetime import datetime
-import os
+from config import ConsumerConfig
 
 class MongoDBHandler:
     """
@@ -9,13 +9,14 @@ class MongoDBHandler:
     """
     
     def __init__(self):
+        cfg = ConsumerConfig()
         # Conectar a MongoDB
         try:
             self.client = MongoClient(
-                host=os.environ.get('MONGO_HOST', 'mongodb'),
-                port=int(os.environ.get('MONGO_PORT', 27017)),
-                username=os.environ.get('MONGO_USER', 'root'),
-                password=os.environ.get('MONGO_PASS', 'rootpassword'),
+                host=cfg.MONGO_HOST,
+                port=cfg.MONGO_PORT,
+                username=cfg.MONGO_USER,
+                password=cfg.MONGO_PASS,
                 authSource='admin',
                 serverSelectionTimeoutMS=5000
             )
@@ -23,7 +24,7 @@ class MongoDBHandler:
             # Verificar conexion
             self.client.admin.command('ping')
             
-            db_name = os.environ.get('MONGO_DBNAME', 'votosdb')
+            db_name = cfg.MONGO_DBNAME
             self.db = self.client[db_name]
             
             print(f"Conectado a MongoDB: {db_name}")

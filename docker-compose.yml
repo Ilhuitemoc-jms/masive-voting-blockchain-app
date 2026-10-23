@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   # KAFKA BROKER -------------------------------
   kafka:
@@ -131,8 +129,6 @@ services:
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASS=${MONGO_PASS}
     volumes:
-      #setear la zona horario de México en el contenedor
-      - /usr/share/zoneinfo/America/Mexico_City:/etc/localtime:ro
       - ./autolm_service/notebooks:/home/jovyan/notebooks
       - ./autolm_service/models:/home/jovyan/models
     networks:

@@ -50,7 +50,7 @@ CONFIG = {
 }
 
 # Variable global que almacena el token JWT de autenticacion
-token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkyYTMyNzMyMWUwZDJmYTMxOWRjMjllIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzc0NTgwODc0LCJpYXQiOjE3NzM5ODA4NzR9.w47Vsw6FkdK3lszZcNq-nQf7uaGsgi_rLJzSnNwnRmI"
+token_autenticacion = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmExMjA5MjRjNDYxMGE1ZDI0YTU1MjBlIiwibm9fY3VlbnRhIjoiMzE3MDk5MDkwIiwiZXhwIjoxNzkyNjI5ODMwLCJpYXQiOjE3OTIwMjk4MzB9.HyVOLxxYuPg51l9r3tLXw8rB9e7TBfBPFcV6OnTy0hk"
 SPINNER_CHARS = ['◜', '◠', '◝', '◞', '◡', '◟']
 
 async def autenticar(session):
@@ -128,11 +128,11 @@ async def enviar_voto(session, numero_voto, semaforo):
                 # Verificacion de respuesta exitosa del servidor incluyendo procesamiento asincrono
                 if response.status in [200, 201, 202]:
                     # Impresion completa en una sola linea que se sobrescribe continuamente
-                    print(f'\r------- Generando registros {loading_char} ------- Voto número {numero_voto} -------', end='', flush=True)
+                    #print(f'\r------- Generando registros {loading_char} ------- Voto número {numero_voto} -------', end='', flush=True)
     
         except Exception as e:
             # Impresion de error en una sola linea que se sobrescribe
-            print(f'\r------- Error en generación {loading_char} ------- Voto {numero_voto}, error: {e} --------------------------', end='', flush=True)
+            #print(f'\r------- Error en generación {loading_char} ------- Voto {numero_voto}, error: {e} --------------------------', end='', flush=True)
 
 async def generar_votos_masivos():
     """

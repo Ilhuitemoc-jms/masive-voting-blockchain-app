@@ -38,7 +38,14 @@ COPY requirements.txt /tmp/requirements.txt
 # Instala todas las dependencias desde requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-RUN mkdir -p /home/jovyan/notebooks /home/jovyan/scripts /home/jovyan/data
+# Pasa a root para crear directorios y corregir la propiedad del home.
+USER root
+# Crea los directorios de trabajo, incluido el de modelos persistentes.
+RUN mkdir -p /home/jovyan/notebooks /home/jovyan/scripts /home/jovyan/data /home/jovyan/models
+# Asigna el home del notebook al usuario no privilegiado de Jupyter.
+RUN chown -R ${NB_UID}:${NB_GID} /home/jovyan
+# Restaura el usuario del notebook para el resto de la imagen.
+USER ${NB_UID}
 WORKDIR /home/jovyan
 
 EXPOSE 8888 4040 4041

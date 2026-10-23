@@ -1,19 +1,17 @@
 # Consumer de Kafka que procesa votos y los inserta en MongoDB
-import os
 import time
 from kafka import KafkaConsumer
 from kafka.errors import NoBrokersAvailable
 import json
+from config import ConsumerConfig
 from validators import validar_estructura_voto
 from db_handler import MongoDBHandler
 
-# Configuración desde variables de entorno
-KAFKA_BROKER = os.environ.get('KAFKA_BROKER', 'kafka:9092')
-KAFKA_TOPIC = os.environ.get('KAFKA_TOPIC', 'voting_data_stream')
+cfg = ConsumerConfig()
 
 print(f"Iniciando Kafka Consumer...")
-print(f"Broker: {KAFKA_BROKER}")
-print(f"Topic: {KAFKA_TOPIC}")
+print(f"Broker: {cfg.KAFKA_BROKER}")
+print(f"Topic: {cfg.KAFKA_TOPIC}")
 
 # Inicializar componentes
 db = MongoDBHandler()
@@ -30,13 +28,13 @@ for attempt in range(max_retries):
         
         # Crear consumer de Kafka
         consumer = KafkaConsumer(
-            KAFKA_TOPIC,
-            bootstrap_servers=[KAFKA_BROKER],
+            cfg.KAFKA_TOPIC,
+            bootstrap_servers=[cfg.KAFKA_BROKER],
             auto_offset_reset='earliest',
             enable_auto_commit=True,
-            group_id='voting-consumer-group',
+            group_id=cfg.KAFKA_GROUP_ID,
             value_deserializer=lambda x: json.loads(x.decode('utf-8')),
-            max_poll_records=500,
+            max_poll_records=cfg.MAX_POLL_RECORDS,
             session_timeout_ms=30000
         )
         
@@ -72,7 +70,6 @@ print("-"*60 + "\n")
 try:
     # Buffer para procesamiento en lotes
     buffer_votos = []
-    BATCH_SIZE = 100
     last_flush_time = time.time()
     FLUSH_INTERVAL = 5  # Segundos máximos para esperar antes de procesar el buffer
     
@@ -94,7 +91,7 @@ try:
             # Procesar lote cuando se alcanza el tamaño O pasa el intervalo de tiempo
             current_time = time.time()
             should_flush = (
-                len(buffer_votos) >= BATCH_SIZE or 
+                len(buffer_votos) >= cfg.BATCH_SIZE or 
                 (len(buffer_votos) > 0 and current_time - last_flush_time >= FLUSH_INTERVAL)
             )
             
