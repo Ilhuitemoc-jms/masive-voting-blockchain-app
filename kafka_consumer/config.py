@@ -22,8 +22,8 @@ class ConsumerConfig:
     MAX_POLL_RECORDS = 500
     
     # Campos sensibles a encriptar
-    CAMPOS_SENSIBLES = [
+"""     CAMPOS_SENSIBLES = [
         'precinct_medst', 'precinct_cvr', 'office', 'district',
         'state', 'county', 'magnitude', 'party', 'party_detailed',
         'voting_hour', 'candidate'
-    ]
+    ] """
